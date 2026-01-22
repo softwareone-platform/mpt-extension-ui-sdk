@@ -3,7 +3,7 @@
 ## Installation
 
 ```bash
-  npm i @swo/react-sdk
+  npm i @mpt-extension/react-sdk
 ```
 
 ## Usage
@@ -12,7 +12,7 @@
 Provides a current context communicated from SoftwareONE Marketplace Platform as React state
 
 ```tsx
-import { useMPTContext } from '@swo/react-sdk';
+import { useMPTContext } from '@mpt-extension/react-sdk';
 
 // For context expected to be `{ order: Order }`
 export default function App() {
@@ -28,7 +28,7 @@ N.B.: Only Plugs with socket `portal.modal` can be opened in modal
 
 ```tsx
 import { useCallback } from 'react';
-import { useMPTModal } from '@swo/react-sdk';
+import { useMPTModal } from '@mpt-extension/react-sdk';
 
 // For main UI Plug
 export function App() {
@@ -76,7 +76,7 @@ N.B.: Only those events that are handled on the level of the platform will be pr
 Emit event only if you know someone is listening
 
 ```tsx
-import { useMPTEmit } from '@swo/react-sdk';
+import { useMPTEmit } from '@mpt-extension/react-sdk';
 
 export default function App() {
     const emit = useMPTEmit();
@@ -96,7 +96,7 @@ N.B.: Only those events that are dispatched on the level of the platform will ha
 Listen events only if you know someone is dispatching
 
 ```tsx
-import { useMPTListen } from '@swo/react-sdk';
+import { useMPTListen } from '@mpt-extension/react-sdk';
 
 export default function App() {
     const process = useCallback(() => {/*...*/}, []);

@@ -1,0 +1,22 @@
+{
+  "name": "@mpt-extension/sdk-monorepo",
+  "private": true,
+  "type": "module",
+  "license": "Apache-2.0",
+  "scripts": {
+    "build": "npm -ws --if-present run build"
+  },
+  "workspaces": [
+    "modules/*"
+  ],
+  "dependencies": {
+    "axios": "^1.10.0",
+    "react": "^19.2.0"
+  },
+  "devDependencies": {
+    "@types/react": "^19.2.7",
+    "@types/react-dom": "^19.2.3",
+    "esbuild": "0.27.0",
+    "typescript": "^5.9.3"
+  }
+}

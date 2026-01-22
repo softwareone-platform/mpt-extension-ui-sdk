@@ -3,14 +3,14 @@
 ## Installation
 
 ```bash
-  npm i @swo/sdk
+  npm i @mpt-extension/sdk
 ```
 
 ## Usage
 ```tsx
 import React from 'react';
 import { createRoot } from 'react-dom/client';
-import { setup } from '@swo/sdk';
+import { setup } from '@mpt-extension/sdk';
 import App from './App';
 
 setup((element: Element) => {

@@ -1,0 +1,44 @@
+name: Publish
+
+on:
+  push:
+    branches: [master]
+
+jobs:
+  publish-npm:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        pkg:
+          - modules/sdk
+          - modules/sdk-react
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          registry-url: https://registry.npmjs.org/
+
+      - run: npm ci
+
+      - name: Build
+        working-directory: ${{ matrix.pkg }}
+        run: npm run build
+
+      - name: Publish if new version
+        working-directory: ${{ matrix.pkg }}
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+        run: |
+          NAME=$(node -p "require('./package.json').name")
+          VERSION=$(node -p "require('./package.json').version")
+
+          if npm view "$NAME@$VERSION" version >/dev/null 2>&1; then
+            echo "Already published: $NAME@$VERSION"
+            exit 0
+          fi
+
+          npm publish --access public

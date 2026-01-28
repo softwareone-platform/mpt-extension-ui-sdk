@@ -24,7 +24,6 @@ export default function App() {
 
 ### useMPTModal
 Allows opening/closing pieces of you Extension UI in modal
-N.B.: Only Plugs with socket `portal.modal` can be opened in modal
 
 ```tsx
 import { useCallback } from 'react';

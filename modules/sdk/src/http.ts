@@ -23,7 +23,7 @@ const isExpired = (jwt: string) => {
     return exp - Date.now() > 60 * 1000;
 }
 
-const http = (() => {
+export const http = (() => {
     const emit = window.__MPT__.emit;
     const listen = window.__MPT__.listen;
 
@@ -49,6 +49,3 @@ const http = (() => {
 
     return client;
 })();
-
-export default http;
-

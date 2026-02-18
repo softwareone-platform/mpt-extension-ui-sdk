@@ -2,7 +2,7 @@
   "name": "@mpt-extension/sdk-react",
   "private": false,
   "type": "module",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
@@ -15,8 +15,7 @@
     }
   },
   "peerDependencies": {
-    "react": "^19.2.0",
-    "axios": "^1.10.0"
+    "react": "^19.2.0"
   },
   "files": ["dist"],
   "publishConfig": {

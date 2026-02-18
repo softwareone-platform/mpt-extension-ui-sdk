@@ -1,14 +1,12 @@
 import axios from 'axios';
 
-export const REQUEST_TOKEN_EVENT = '$requesttoken' as const;
-export const REPORT_TOKEN_EVENT = '$reporttoken' as const;
+export const REQUEST_TOKEN_EVENT_TYPE = '$requesttoken' as const;
+export const REPORT_TOKEN_EVENT_TYPE = '$reporttoken' as const;
 
 function base64Decode(str: string) {
     str = str.replace(/-/g, "+").replace(/_/g, "/");
     const pad = str.length % 4;
     if (pad) str += "=".repeat(4 - pad);
-
-    // bytes -> utf-8 string
     const binary = atob(str);
     const bytes = Uint8Array.from(binary, c => c.charCodeAt(0));
     return new TextDecoder().decode(bytes);
@@ -26,8 +24,8 @@ const isExpired = (jwt: string) => {
 }
 
 const http = (() => {
-    const emit = (window as any).__MPT__?.emit;
-    const listen = (window as any).__MPT__?.listen;
+    const emit = window.__MPT__?.emit;
+    const listen = window.__MPT__?.listen;
 
     let $token = null;
     const client = axios.create();
@@ -35,12 +33,12 @@ const http = (() => {
     client.interceptors.request.use(async (config) => {
         if (isExpired($token)) {
             $token = await new Promise<string>((resolve) => {
-                const stop = listen(REPORT_TOKEN_EVENT, ({ token }) => {
+                const stop = listen(REPORT_TOKEN_EVENT_TYPE, ({ token }) => {
                     stop();
                     resolve(token);
                 });
 
-                emit(REQUEST_TOKEN_EVENT);
+                emit(REQUEST_TOKEN_EVENT_TYPE);
             });
         }
 

@@ -24,8 +24,8 @@ const isExpired = (jwt: string) => {
 }
 
 const http = (() => {
-    const emit = window.__MPT__?.emit;
-    const listen = window.__MPT__?.listen;
+    const emit = window.__MPT__.emit;
+    const listen = window.__MPT__.listen;
 
     let $token = null;
     const client = axios.create();

@@ -56,3 +56,5 @@ results.xml
 /temp
 /test-results
 /src/coverage
+
+/modules/**/dist

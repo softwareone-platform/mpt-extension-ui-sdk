@@ -28,7 +28,11 @@ export const http = (() => {
     const listen = window.__MPT__.listen;
 
     let $token = null;
-    const client = axios.create();
+    const client = axios.create({   
+        withCredentials: false,   
+        xsrfCookieName: '',
+        xsrfHeaderName: ''
+    });
 
     client.interceptors.request.use(async (config) => {
         if (isExpired($token)) {

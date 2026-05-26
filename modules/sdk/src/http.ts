@@ -20,7 +20,7 @@ export function parseJWT(token: string) {
 const isExpired = (jwt: string) => {
     if (!jwt) return true;
     const { exp } = parseJWT(jwt);
-    return exp - Date.now() > 60 * 1000;
+    return exp * 1000 - Date.now() < 60 * 1000;
 }
 
 export const http = (() => {
@@ -35,6 +35,8 @@ export const http = (() => {
     });
 
     client.interceptors.request.use(async (config) => {
+        console.log('TOKEN STATUS', isExpired($token))
+
         if (isExpired($token)) {
             $token = await new Promise<string>((resolve) => {
                 const stop = listen(REPORT_TOKEN_EVENT_TYPE, ({ token }) => {

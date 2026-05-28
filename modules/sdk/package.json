@@ -18,6 +18,10 @@
     "axios": "^1.13.5"
   },
   "files": ["dist"],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/softwareone-platform/mpt-extension-ui-sdk.git"
+  },
   "publishConfig": {
     "access": "public"
   }

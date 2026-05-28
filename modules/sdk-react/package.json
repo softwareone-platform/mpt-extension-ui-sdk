@@ -18,6 +18,10 @@
     "react": "^19.2.0"
   },
   "files": ["dist"],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/softwareone-platform/mpt-extension-ui-sdk.git"
+  },
   "publishConfig": {
     "access": "public"
   }
